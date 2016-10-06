@@ -1,0 +1,11 @@
+{
+  "name": "upwork-jobs-feed-tracker",
+  "version": "1.0.0",
+  "description": "Upwork jobs feed tracker",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ilya Nee",
+  "license": "ISC"
+}

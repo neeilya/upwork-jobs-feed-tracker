@@ -3,6 +3,7 @@
 	"name": "Upwork jobs feed tracker",
 	"description": "Freelancer on Upwork? Tired of refreshing your jobs feed page? Now you don't have to! Upwork jobs feed tracker makes everything for you. Whenever new job is posted in your personal feed you will get instant notification!",
 	"version": "1.0",
+	
 	"icons": {
 		"16": "icon.png",
 		"48": "icon.png",
@@ -12,10 +13,18 @@
 		"default_icon": "icon.png",
 		"default_popup": "popup.html"
 	},
+	"background": {
+		"persistent": false,
+		"scripts": [
+			"background.js"
+		]
+	},
 	"permissions": [
+		"alarms",
 		"background",
 		"notifications",
 		"storage",
 		"https://www.upwork.com/"
-	]
+	],
+	"options_page": "options.html"
 }
