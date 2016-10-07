@@ -7,5 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ilya Nee",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "copy-webpack-plugin": "^3.0.1",
+    "json-loader": "^0.5.4",
+    "rss-parser": "^2.5.2",
+    "webpack": "^1.13.2"
+  }
 }
