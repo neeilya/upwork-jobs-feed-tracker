@@ -1,4 +1,6 @@
+var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: "./src/js/background.js",
@@ -6,13 +8,18 @@ module.exports = {
         filename: "public/background.js"
     },
     watch: true,
-    devtool: 'source-map',
     plugins: [
         new  CopyWebpackPlugin([
             { from: './manifest.json', to: './public/' },
             { from: './icon.png', to: './public/' },
             { from: './src/views', to: './public' }
-        ])
+        ]),
+        new CleanWebpackPlugin(['public']),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
     ],
     module: {
         loaders: [
