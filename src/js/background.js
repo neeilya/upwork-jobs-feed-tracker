@@ -23,3 +23,12 @@ chrome.alarms.onAlarm.addListener(({ name }) => {
     jobsStorage.removeOldJobs();
     jobsFetcher.fetchAndNotify();
 });
+
+chrome.notifications.onButtonClicked.addListener((notificationId, buttonId) => {
+    if((notificationId + '').substr(0,9) !== 'freshJobs') {
+        return;
+    }
+
+    chrome.tabs.create({'url': "/options.html" });
+    chrome.notifications.clear(notificationId);
+});

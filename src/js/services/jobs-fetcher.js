@@ -3,6 +3,8 @@ import jobsStorage from './jobs-storage';
 import badge from './badge';
 import storage from './storage';
 
+let notifications = 0;
+
 export default {
     /**
      * Fetch jobs from server
@@ -64,7 +66,7 @@ export default {
             if(freshJobs.length > 0) {
                 badge.setCounter(freshJobs.length);
 
-                chrome.notifications.create(++notifications + '-notification', {
+                chrome.notifications.create('freshJobs-' + ++notifications, {
                     type: 'basic',
                     iconUrl: './notification-icon.png',
                     title: 'You got ' + freshJobs.length + ' new jobs!',

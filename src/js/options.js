@@ -16,7 +16,7 @@ let app = new Vue({
     data: {
         jobs: jobsStorage.getAll(),
         unreadJobs: jobsStorage.getUnreadJobs(),
-        auth: storage.get('auth', false),
+        auth: storage.get('auth', true),
         fetchInterval: config.getInterval()
     },
     created() {
