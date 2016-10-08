@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html id="options">
+<title>Upwork jobs feed tracker</title>
 <head>
     <link rel="stylesheet" type="text/css" href="options.css">
 </head>
@@ -53,8 +54,22 @@
                         {{ job.description }}
                     </template>
                 </p>
-                <p class="client-info">
-                    <strong class="tgrey">Client: </strong>
+                <p class="client-info tgrey">
+                    <span class="payment">
+                        Client: Payment
+                        <template v-if="job.client.paymentVerificationStatus">
+                            verified
+                        </template>
+                        <template v-else>
+                            unverified
+                        </template>
+                    </span>
+                    <span class="spent tdark">
+                        {{ job.client.spentTier }}
+                    </span> spent
+                    <span class="location">
+                        {{ job.client.location.country }}
+                    </span>
                 </p>
                 <p class="skills">
                     <span class="skill-tag" v-for="skill in job.skills">{{ skill.name }}</span>
