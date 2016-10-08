@@ -1,1 +1,34 @@
-Hey this is default popup
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="popup.css">
+</head>
+<body>
+    <div id="popup">
+        <img src="icon.png" class="popup-icon" />
+        <div class="content">
+            <template v-if="auth === true">
+                <template v-if="jobs.length > 0">
+                    <span>
+                        <template v-if="jobs.length === 1">
+                            There is {{ jobs.length }} new job!
+                        </template>
+                        <template v-else>
+                            There are {{ jobs.length }} new jobs!
+                        </template>
+                    </span>
+                    <br/>
+                    <a href="#" v-on:click="openOptionsPage()">Click here to view</a>
+                </template>
+                <template v-else>
+                    No new jobs, you are good!
+                </template>
+            </template>
+            <template v-else>
+                :( Please login in upwork website
+            </template>
+        </div>
+    </div>
+    <script type="text/javascript" src="popup.js"></script>
+</body>
+</html>
