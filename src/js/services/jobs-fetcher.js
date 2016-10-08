@@ -22,6 +22,29 @@ export default {
         return JSON.parse(xhr.responseText);
     },
     /**
+     * Fetch jobs for the first time and mark them read
+     * @return {Void}
+     */
+    fetchFirstTime() {
+        try {
+            let { results } = this.fetch();
+            let readJobs = results.map(job => {
+                job.isRead = true;
+                return job;
+            });
+
+            jobsStorage.store(readJobs);
+        } catch (err) {
+            if(err.code === 401) {
+                storage.store('auth', false);
+                badge.refresh();
+                badge.setText('err');
+            }
+
+            console.log(err);
+        }
+    },
+    /**
      * Fetch jobs and make notification if there are new
      * @return {Void}
      */

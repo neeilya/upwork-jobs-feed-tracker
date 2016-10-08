@@ -13,7 +13,7 @@ if(jobsStorage.getUnreadJobs().length > 0) {
 }
 
 jobsAlarm.create(config.getInterval()); // in production minimum 1 minute
-jobsFetcher.fetchAndNotify();
+jobsFetcher.fetchFirstTime();
 
 chrome.alarms.onAlarm.addListener(({ name }) => {
     if(name !== 'jobsFetch') {
