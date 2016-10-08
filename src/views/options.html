@@ -1,1 +1,67 @@
-Hello world, this is options page
+<!DOCTYPE html>
+<html id="options">
+<head>
+    <link rel="stylesheet" type="text/css" href="options.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="block">
+                <h3 class="heading">Settings</h3>
+                Fetch interval
+                <select v-model="fetchInterval">
+                    <option value="1">1 minute</option>
+                    <option value="10">10 minutes</option>
+                    <option value="30">30 minutes</option>
+                </select>
+            </div>
+            <div class="tlight tsmall meta">Developed by <a href="http://www.upwork.com/o/profiles/users/_~014da71e0d82dc5cdf/" target="_blank">@neeilya</a></div>
+        </div>
+        <div class="content block">
+            <h3>
+                My Job Feed
+                <template v-if="unreadJobs.length">
+                    ({{ unreadJobs.length }} new)
+                </template>
+            </h3>
+            <div v-for="job in jobs" v-bind:class="{ unread: job.isRead === false }" class="job">
+                <h3 class="job-title"><a href="https://www.upwork.com/jobs/_{{ job.ciphertext }}" target="_blank">{{ job.title }}</a></h3>
+                <p class="tmedium tgrey tsmall">
+                    <template v-if="job.type === 1">
+                        Fixed price
+                    </template>
+                    <template v-else>
+                        Hourly
+                    </template>
+                    - {{ job.tierText }} -
+                    <template v-if="job.type === 1">
+                        Est. Budget: ${{ job.amount.amount }}
+                    </template>
+                    <template v-else>
+                        Est. time: {{ job.duration }}
+                    </template>
+                    <span>- Posted {{ job.createdOn | timeAgo }}</span>
+                </p>
+                <p class="description tgrey tmedium">
+                    <template v-if="job.description !== job.description.substr(0, 200)">
+                        <template v-if="job.showfull === true">{{ job.description }}</template>
+                        <template v-else>
+                            {{ job.description.substr(0, 200) }}...<span class="link" v-on:click="job.showfull = true"> more</span>
+                        </template>
+                    </template>
+                    <template v-else>
+                        {{ job.description }}
+                    </template>
+                </p>
+                <p class="client-info">
+                    <strong class="tgrey">Client: </strong>
+                </p>
+                <p class="skills">
+                    <span class="skill-tag" v-for="skill in job.skills">{{ skill.name }}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="options.js"></script>
+</body>
+</html>
