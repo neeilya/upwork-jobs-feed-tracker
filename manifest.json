@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Upwork jobs feed tracker",
-	"description": "Freelancer on Upwork? Tired of refreshing your jobs feed page? Now you don't have to! Upwork jobs feed tracker makes everything for you. Whenever new job is posted in your personal feed you will get instant notification!",
+	"description": "Freelancer on upwork? Meet Upwork jobs feed tracker. Whenever new job appears in your feed you will get an instant notification!",
 	"version": "1.0",
 	
 	"icons": {
