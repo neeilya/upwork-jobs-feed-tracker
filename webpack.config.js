@@ -22,7 +22,7 @@ module.exports = {
             { from: './src/fonts', to: './public/fonts' },
             { from: './src/views', to: './public' }
         ]),
-        new CleanWebpackPlugin(['public'])
+        new CleanWebpackPlugin(['public']),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
