@@ -6,13 +6,29 @@ const badge = {
     counter: 0,
 
     /**
+     * Get badge text
+     * @return {String}
+     */
+    getText(callback) {
+        chrome.browserAction.getBadgeText({}, callback);
+    },
+
+    /**
      * Refresh badge
      * @return {Void}
      */
     refresh() {
-        chrome.browserAction.setBadgeBackgroundColor({ color: '#f44e42' });
         chrome.browserAction.setBadgeText({ text: '' });
         this.counter = 0;
+    },
+
+    /**
+     * Counter setter
+     * @param {Number} counter
+     */
+    setCounter(counter) {
+        this.counter = counter;
+        chrome.browserAction.setBadgeText({ text: (counter === 0 ? '' : counter) + '' });
     },
 
     /**
@@ -46,7 +62,7 @@ const badge = {
      * @param {String} text
      */
     setText(text) {
-        chrome.browserAction.setBadgeText({ text: text });
+        chrome.browserAction.setBadgeText({ text: text + '' });
     }
 }
 

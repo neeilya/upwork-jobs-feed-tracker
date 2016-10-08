@@ -1,4 +1,3 @@
-import parser from 'rss-parser/dist/rss-parser.js';
 import config from './config';
 
 export default {

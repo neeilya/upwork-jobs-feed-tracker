@@ -64,5 +64,17 @@ export default {
      */
     getAll() {
         return storage.get('jobs');
+    },
+
+    /**
+     * Retrieve new jobs
+     * @return {Array}
+     */
+    getUnreadJobs() {
+        let jobs = storage.get('jobs', []);
+
+        return jobs.filter((job) => {
+            return job.isRead === false;
+        })
     }
 }
