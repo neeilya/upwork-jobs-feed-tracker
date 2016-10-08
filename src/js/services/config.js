@@ -4,6 +4,14 @@ export default {
      * @return {Number}
      */
     getInterval() {
-        return localStorage.getItem('fetchInterval') || 0.1; // one minute by default in production (6 seconds in development)
+        return localStorage.getItem('fetchInterval') || 1; // one minute by default in production (6 seconds in development)
+    },
+
+    /**
+     * Setting period of fetching jobs
+     * @param {Void}
+     */
+    setInterval(interval) {
+        localStorage.setItem('fetchInterval', interval);
     }
 }

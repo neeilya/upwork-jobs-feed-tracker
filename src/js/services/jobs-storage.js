@@ -63,7 +63,10 @@ export default {
      * @return {Array}
      */
     getAll() {
-        return storage.get('jobs');
+        return storage.get('jobs', []).map(job => {
+            job.showfull = false;
+            return job;
+        });
     },
 
     /**
@@ -76,5 +79,22 @@ export default {
         return jobs.filter((job) => {
             return job.isRead === false;
         })
+    },
+    /**
+     * Remove old jobs from storage
+     * @return {Void}
+     */
+    removeOldJobs() {
+        let jobs = storage.get('jobs', []);
+
+        if(jobs.length === 0) {
+            return;
+        }
+
+        if(jobs.length > 30) {
+            jobs = jobs.slice(0,30);
+        }
+
+        storage.store('jobs', jobs);
     }
 }
