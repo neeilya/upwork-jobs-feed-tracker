@@ -12,6 +12,6 @@ export default {
      * @param {Void}
      */
     setInterval(interval) {
-        localStorage.setItem('fetchInterval', interval);
+        localStorage.setItem('fetchInterval', +interval);
     }
 }

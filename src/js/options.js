@@ -27,7 +27,10 @@ let app = new Vue({
         }, true);
 
         jobsStorage.markAllRead();
-        badge.refresh();
+
+        if(this.auth === true) {
+            badge.refresh();
+        }
     },
     watch: {
         'fetchInterval': function(newValue, oldValue) {
