@@ -23,11 +23,8 @@ module.exports = {
             { from: './src/views', to: './public' }
         ]),
         new CleanWebpackPlugin(['public']),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.OccurrenceOrderPlugin()
     ],
     module: {
         loaders: [
