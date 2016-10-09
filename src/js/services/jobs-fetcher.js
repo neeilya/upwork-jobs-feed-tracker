@@ -66,6 +66,8 @@ export default {
             if(freshJobs.length > 0) {
                 badge.setCounter(freshJobs.length);
 
+                this.removeOldNotifications();
+
                 chrome.notifications.create('freshJobs-' + ++notifications, {
                     type: 'basic',
                     iconUrl: './notification-icon.png',
@@ -85,5 +87,22 @@ export default {
 
             console.log(err);
         }
+    },
+    /**
+     * Remove old notifications if any
+     * @return {Void}
+     */
+    removeOldNotifications() {
+        chrome.notifications.getAll(notifications => {
+            for(let notification in notifications) {
+                if((notification + '').substr(0,9) !== 'freshJobs') {
+                    return;
+                }
+
+                if (notifications.hasOwnProperty(notification)) {
+                    chrome.notifications.clear(notification);
+                }
+            }
+        });
     }
 }
