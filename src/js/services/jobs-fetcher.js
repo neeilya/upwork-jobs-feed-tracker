@@ -64,7 +64,7 @@ export default {
             });
 
             if(freshJobs.length > 0) {
-                badge.setCounter(freshJobs.length);
+                badge.setCounter(unreadJobs.length);
 
                 this.removeOldNotifications();
 
