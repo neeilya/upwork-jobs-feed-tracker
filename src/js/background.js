@@ -12,8 +12,9 @@ if(jobsStorage.getUnreadJobs().length > 0) {
     badge.setCounter(jobsStorage.getUnreadJobs().length);
 }
 
+localStorage.clear();
 jobsAlarm.create(config.getInterval()); // in production minimum 1 minute
-jobsFetcher.fetchFirstTime();
+jobsFetcher.fetchAndNotify();
 
 chrome.alarms.onAlarm.addListener(({ name }) => {
     if(name !== 'jobsFetch') {

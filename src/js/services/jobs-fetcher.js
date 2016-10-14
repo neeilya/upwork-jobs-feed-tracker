@@ -56,16 +56,10 @@ export default {
             let freshJobs = jobsStorage.push(results);
             let unreadJobs = jobsStorage.getUnreadJobs();
 
-            badge.getText((text) => {
-                if(text === 'err') {
-                    storage.store('auth', true);
-                    badge.setCounter(unreadJobs.length);
-                }
-            });
+            badge.setCounter(unreadJobs.length);
+            storage.store('auth', true);
 
             if(freshJobs.length > 0) {
-                badge.setCounter(unreadJobs.length);
-
                 this.removeOldNotifications();
 
                 chrome.notifications.create('freshJobs-' + ++notifications, {
