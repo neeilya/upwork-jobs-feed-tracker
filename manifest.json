@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Upwork jobs feed tracker",
 	"description": "Freelancer on upwork? Meet Upwork jobs feed tracker. Whenever new job appears in your feed you will get an instant notification!",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	
 	"icons": {
 		"16": "icon.png",
