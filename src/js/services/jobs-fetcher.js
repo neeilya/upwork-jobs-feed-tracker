@@ -7,21 +7,43 @@ let notifications = 0;
 
 export default {
     /**
-     * Fetch jobs from server
-     * @return {Array}
+     * Make XMLHttpRequest
+     * @return {Object}
      */
-    fetch() {
+    feedRequest() {
         let xhr = new XMLHttpRequest();
 
         xhr.open("GET", 'https://www.upwork.com/ab/find-work/api/feeds/search', false);
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         xhr.send();
 
-        if(xhr.status !== 200) {
-            throw { code: xhr.status };
+        return xhr;
+    },
+    /**
+     * Make auth check request
+     * @return {Void}
+     */
+    checkAuthenticated() {
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("GET", 'https://www.upwork.com/ab/account-security/login', false);
+        xhr.setRequestHeader('Content-Type', 'text/html');
+        xhr.send();
+    },
+    /**
+     * Fetch jobs from server
+     * @return {Array}
+     */
+    fetch() {
+        this.checkAuthenticated();
+
+        let response = this.feedRequest();
+
+        if(response.status !== 200) {
+            throw { code: response.status };
         }
 
-        return JSON.parse(xhr.responseText);
+        return JSON.parse(response.responseText);
     },
     /**
      * Fetch jobs for the first time and mark them read

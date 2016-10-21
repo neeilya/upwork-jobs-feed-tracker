@@ -12,7 +12,6 @@ module.exports = {
     output: {
         filename: "public/[name].js"
     },
-    watch: true,
     plugins: [
         new ExtractTextPlugin("public/[name].css"),
         new CopyWebpackPlugin([
