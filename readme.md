@@ -1,9 +1,21 @@
 ![alt tag](https://raw.githubusercontent.com/neeilya/upwork-jobs-feed-tracker/master/promotional.png)
 
-The Upwork jobs feed tracker is a Chrome extension. It allows you to track your personal jobs feed on Upwork and immediately notifies you whenever new job appears.
+The Upwork jobs feed tracker is a Chrome extension.  
+It allows you to track your personal jobs feed on Upwork  
+and immediately notifies you whenever new job appears.
 
-You can install ready extension from [here](https://chrome.google.com/webstore/detail/upwork-jobs-feed-tracker/gcjmekbfkkmaccloaoccfiohjnmgkddm).  
+### Download
+You can install ready extension directly from Chrome Web Store [here](https://chrome.google.com/webstore/detail/upwork-jobs-feed-tracker/gcjmekbfkkmaccloaoccfiohjnmgkddm).  
 Feedback and contribute are highly appreciated!
+
+## Warning to freelancers
+**This extension retrieves items from your personal job feed**.  
+If you are new freelancer on the platform, you might have empty  
+jobs feed at the beginning. To personalize your job feed you have to  
+make regular jobs search with some criteria like keyword or  
+minimum budget and then save it (see screenshot)
+
+![alt tag](https://raw.githubusercontent.com/neeilya/upwork-jobs-feed-tracker/master/search.png)
 
 ## Features
 
