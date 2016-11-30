@@ -7,8 +7,52 @@ import config from './services/config';
 import styles from './../sass/options.sass';
 import moment from 'moment';
 
-Vue.filter('timeAgo', (value) => {
+Vue.filter('timeAgo', value => {
     return moment(value).fromNow();
+});
+
+Vue.filter('money_human', value => {
+    if(value === 0) {
+        return value;
+    }
+
+    if(value >= 250000)
+        return `250k+`;
+
+    if(value >= 200000)
+        return '200k+';
+
+    if(value >= 150000)
+        return '150k+';
+
+    if(value >= 100000)
+        return '100k+'
+
+    if(value >= 70000)
+        return '70k+';
+
+    if(value >= 50000)
+        return '50k+';
+
+    if(value >= 25000)
+        return '25k+';
+
+    if(value >= 10000)
+        return '10k+';
+
+    if(value >= 5000)
+        return '5k+';
+
+    if(value >= 1000)
+        return '1k+';
+
+    if(value >= 500)
+        return '500+';
+
+    if(value >= 100)
+        return '100+';
+
+    return value;
 });
 
 let app = new Vue({

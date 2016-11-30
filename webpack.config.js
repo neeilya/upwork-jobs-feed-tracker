@@ -19,6 +19,7 @@ module.exports = {
             { from: './icon.png', to: './public/' },
             { from: './notification-icon.png', to: './public/' },
             { from: './src/fonts', to: './public/fonts' },
+            { from: './src/css', to: './public' },
             { from: './src/views', to: './public' }
         ]),
         new CleanWebpackPlugin(['public']),

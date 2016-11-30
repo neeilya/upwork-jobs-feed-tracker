@@ -3,6 +3,7 @@
 <title>Upwork jobs feed tracker</title>
 <head>
     <link rel="stylesheet" type="text/css" href="options.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome.min.css">
 </head>
 <body>
     <div class="container">
@@ -54,9 +55,14 @@
                         {{ job.description }}
                     </template>
                 </p>
+                <p class="skills">
+                    <span class="skill-tag" v-for="skill in job.skills">{{ skill.name }}</span>
+                </p>
                 <p class="client-info tgrey">
                     <span class="payment">
-                        Client: Payment
+                        Client:
+                        <template v-if="job.client.paymentVerificationStatus"><i class="fa fa-check-circle verified" aria-hidden="true"></i></template>
+                        Payment
                         <template v-if="job.client.paymentVerificationStatus">
                             verified
                         </template>
@@ -64,15 +70,19 @@
                             unverified
                         </template>
                     </span>
+                    <span class="rating">
+                        <i v-bind:class="{ active: job.client.totalFeedback >= 1 }" class="fa fa-star" aria-hidden="true"></i>
+                        <i v-bind:class="{ active: job.client.totalFeedback >= 2 }" class="fa fa-star" aria-hidden="true"></i>
+                        <i v-bind:class="{ active: job.client.totalFeedback >= 3 }" class="fa fa-star" aria-hidden="true"></i>
+                        <i v-bind:class="{ active: job.client.totalFeedback >= 4 }" class="fa fa-star" aria-hidden="true"></i>
+                        <i v-bind:class="{ active: job.client.totalFeedback >= 4.9 }" class="fa fa-star" aria-hidden="true"></i>
+                    </span>
                     <span class="spent tdark">
-                        {{ job.client.spentTier }}
+                        ${{ job.client.totalSpent | money_human }}
                     </span> spent
                     <span class="location">
-                        {{ job.client.location.country }}
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> {{ job.client.location.country }}
                     </span>
-                </p>
-                <p class="skills">
-                    <span class="skill-tag" v-for="skill in job.skills">{{ skill.name }}</span>
                 </p>
             </div>
         </div>

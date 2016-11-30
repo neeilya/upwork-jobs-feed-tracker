@@ -72,12 +72,20 @@ a
         margin-top: 20px
     .client-info
         font-weight: 500
-        margin-top: 20px
+        margin-top: 10px
         .payment
             margin-right: 20px
         .location
             margin-left: 20px
+        .spent
+            margin-left: 20px
+        .rating
+            .fa-star
+                color: #dedede
+                &.active
+                    color: #37a000
     .skills
+        overflow: auto
         margin-top: 20px
         .skill-tag
             cursor: default
@@ -99,3 +107,9 @@ a
     margin: 0 0 5px
     font-size: 19px
     font-weight: 500
+
+.fa-check-circle.verified
+    font-size: 19px
+    color: #14bff4
+    position: relative
+    top: 1px
