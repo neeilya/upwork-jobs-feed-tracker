@@ -1,6 +1,6 @@
 {
   "name": "upwork-jobs-feed-tracker",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "description": "Upwork jobs feed tracker",
   "main": "main.js",
   "scripts": {
