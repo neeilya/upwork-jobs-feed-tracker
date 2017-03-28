@@ -21,7 +21,7 @@
     "node-sass": "^3.10.1",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
-    "vue": "^1.0.28-csp",
+    "vue": "git://github.com/vuejs/vue.git#csp",
     "webpack": "^1.13.2"
   },
   "devDependencies": {
