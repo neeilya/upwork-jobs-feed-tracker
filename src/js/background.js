@@ -4,14 +4,17 @@ import jobsAlarm from './services/jobs-alarm';
 import badge from './services/badge';
 import config from './services/config';
 
-let notifications = 0;
-
 // Set badge if there are jobs in storage
 if(jobsStorage.getUnreadJobs().length > 0) {
     chrome.browserAction.setBadgeBackgroundColor({ color: '#f44e42' });
     badge.setCounter(jobsStorage.getUnreadJobs().length);
 }
 
+// initialize config
+config.setIsFetchingEnabled(1);
+config.setPlayNotificationSound(1);
+
+// initialize jobs fetching
 jobsAlarm.create(config.getInterval()); // in production minimum 1 minute
 jobsFetcher.fetchAndNotify();
 
@@ -24,7 +27,7 @@ chrome.alarms.onAlarm.addListener(({ name }) => {
     jobsFetcher.fetchAndNotify();
 });
 
-chrome.notifications.onButtonClicked.addListener((notificationId, buttonId) => {
+chrome.notifications.onButtonClicked.addListener(notificationId => {
     if((notificationId + '').substr(0,9) !== 'freshJobs') {
         return;
     }
