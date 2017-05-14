@@ -1,3 +1,4 @@
+import axios from 'axios';
 import config from './config';
 import jobsStorage from './jobs-storage';
 import badge from './badge';
@@ -11,70 +12,41 @@ export default {
      * @return {Object}
      */
     feedRequest() {
-        let xhr = new XMLHttpRequest();
-
-        xhr.open("GET", 'https://www.upwork.com/ab/find-work/api/feeds/search', false);
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        xhr.send();
-
-        return xhr;
+        return axios.get('https://www.upwork.com/ab/find-work/api/feeds/search', {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        });
     },
     /**
-     * Make auth check request
-     * @return {Void}
+     * Make auth check request (required for keeping user authenticated within upwork)
+     * @return {Object}
      */
     checkAuthenticated() {
-        let xhr = new XMLHttpRequest();
-
-        xhr.open("GET", 'https://www.upwork.com/ab/account-security/login', false);
-        xhr.setRequestHeader('Content-Type', 'text/html');
-        xhr.send();
+        return axios.get('https://www.upwork.com/ab/account-security/login');
     },
     /**
      * Fetch jobs from server
-     * @return {Array}
+     * @return {Object}
      */
     fetch() {
-        this.checkAuthenticated();
-
-        let response = this.feedRequest();
-
-        if(response.status !== 200) {
-            throw { code: response.status };
-        }
-
-        return JSON.parse(response.responseText);
-    },
-    /**
-     * Fetch jobs for the first time and mark them read
-     * @return {Void}
-     */
-    fetchFirstTime() {
-        try {
-            let { results } = this.fetch();
-            let readJobs = results.map(job => {
-                job.isRead = true;
-                return job;
-            });
-
-            jobsStorage.store(readJobs);
-        } catch (err) {
-            if(err.code === 401) {
-                storage.store('auth', false);
-                badge.refresh();
-                badge.setText('err');
-            }
-
-            console.log(err);
-        }
+        return new Promise((resolve, reject) => {
+            this.checkAuthenticated()
+                .then(this.feedRequest)
+                .then(response => {
+                    if(response.status !== 200) {
+                        reject({ code: response.status });
+                    }
+                    resolve(response.data);
+                });
+        });
     },
     /**
      * Fetch jobs and make notification if there are new
-     * @return {Void}
+     * @return {undefined}
      */
     fetchAndNotify() {
-        try {
-            let { results } = this.fetch();
+        this.fetch().then(({ results }) => {
             let freshJobs = jobsStorage.push(results);
             let unreadJobs = jobsStorage.getUnreadJobs();
 
@@ -99,7 +71,7 @@ export default {
                     sound.play();
                 }
             }
-        } catch(err) {
+        }).catch(err => {
             if(err.code === 401) {
                 storage.store('auth', false);
                 badge.refresh();
@@ -107,11 +79,11 @@ export default {
             }
 
             console.log(err);
-        }
+        });
     },
     /**
      * Remove old notifications if any
-     * @return {Void}
+     * @return {undefined}
      */
     removeOldNotifications() {
         chrome.notifications.getAll(notifications => {
