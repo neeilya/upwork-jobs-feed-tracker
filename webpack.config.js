@@ -16,6 +16,7 @@ module.exports = {
         new ExtractTextPlugin("public/[name].css"),
         new CopyWebpackPlugin([
             { from: './manifest.json', to: './public/' },
+            { from: './notification.mp3', to: './public/' },
             { from: './icon.png', to: './public/' },
             { from: './notification-icon.png', to: './public/' },
             { from: './src/fonts', to: './public/fonts' },
