@@ -93,6 +93,11 @@ export default {
                         title: "Click here to take a look"
                     }]
                 });
+
+                if(!!JSON.parse(config.getPlayNotificationSound())) {
+                    const sound = new Audio('notification.mp3');
+                    sound.play();
+                }
             }
         } catch(err) {
             if(err.code === 401) {

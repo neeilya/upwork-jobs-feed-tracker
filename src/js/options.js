@@ -55,13 +55,15 @@ Vue.filter('money_human', value => {
     return value;
 });
 
-let app = new Vue({
+new Vue({
     el: '#options',
     data: {
+        isFetchingEnabled: config.getIsFetchingEnabled(),
         jobs: jobsStorage.getAll(),
         unreadJobs: jobsStorage.getUnreadJobs(),
         auth: storage.get('auth', true),
-        fetchInterval: config.getInterval()
+        fetchInterval: config.getInterval(),
+        playNotificationSound: config.getPlayNotificationSound()
     },
     created() {
         window.addEventListener('storage', (e) => {
@@ -77,11 +79,23 @@ let app = new Vue({
         }
     },
     watch: {
-        'fetchInterval': function(newValue, oldValue) {
-            config.setInterval(newValue);
+        'fetchInterval': function(value) {
+            config.setInterval(value);
 
             jobsAlarm.destroy();
-            jobsAlarm.create(newValue);
+            jobsAlarm.create(value);
+        },
+        'playNotificationSound': function(value) {
+            config.setPlayNotificationSound(value);
+        },
+        'isFetchingEnabled': function(value) {
+            config.setIsFetchingEnabled(value);
+
+            if (! JSON.parse(config.getIsFetchingEnabled())) {
+                jobsAlarm.destroy();
+            } else {
+                jobsAlarm.create(config.getInterval());
+            }
         }
     }
 });
