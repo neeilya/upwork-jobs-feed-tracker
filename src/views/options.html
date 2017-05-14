@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label>Fetch interval</label>
                         <select v-model="fetchInterval">
-                            <option value="0.1">1 minute</option>
+                            <option value="1">1 minute</option>
                             <option value="5">5 minutes</option>
                             <option value="10">10 minutes</option>
                         </select>
@@ -46,7 +46,7 @@
                 </template>
             </h3>
             <div v-for="job in jobs" v-bind:class="{ unread: job.isRead === false }" class="job">
-                <h3 class="job-title"><a href="https://www.upwork.com/jobs/_{{ job.ciphertext }}" target="_blank">{{ job.title }}</a></h3>
+                <h3 class="job-title"><a href="https://www.upwork.com/jobs/_{{ job.ciphertext }}" target="_blank">{{{ job.title }}}</a></h3>
                 <p class="tmedium tgrey tsmall">
                     <template v-if="job.type === 1">
                         Fixed price
@@ -102,6 +102,15 @@
                     <span class="location">
                         <i class="fa fa-map-marker" aria-hidden="true"></i> {{ job.client.location.country }}
                     </span>
+                </p>
+            </div>
+            <div v-if="jobs.length == 0">
+                <h3 class="mb-0">No jobs so far :(</h3>
+                <p class="tlight">
+                    This may happen either because you just installed<br/>
+                    extension and it needs some time to load data<br>
+                    or you have not configured your jobs feed on upwork.<br/><br/>
+                    In the latter case please refer to <a target="_blank" href="https://github.com/neeilya/upwork-jobs-feed-tracker#warning-to-freelancers">this instruction.</a>
                 </p>
             </div>
         </div>
