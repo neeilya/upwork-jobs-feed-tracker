@@ -19,7 +19,7 @@ minimum budget and then save it (see screenshot)
 
 ## Features
 
-- Native Chrome notifications
+- Native Chrome notifications (now with sound)
 - Configurable frequency of jobs checking requests
 - Immediate access to fresh jobs
 - *Todo:* Customizable search filters
