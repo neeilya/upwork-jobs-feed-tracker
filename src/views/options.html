@@ -9,13 +9,32 @@
     <div class="container">
         <div class="sidebar">
             <div class="block">
-                <h3 class="heading">Settings</h3>
-                Fetch interval
-                <select v-model="fetchInterval">
-                    <option value="1">1 minute</option>
-                    <option value="5">5 minutes</option>
-                    <option value="10">10 minutes</option>
-                </select>
+                <form id="settings">
+                    <h3 class="heading">Settings</h3>
+                    <div class="form-group">
+                        <label>Enable fetching</label>
+                        <select v-model="isFetchingEnabled">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    <hr/>
+                    <div class="form-group">
+                        <label>Fetch interval</label>
+                        <select v-model="fetchInterval">
+                            <option value="0.1">1 minute</option>
+                            <option value="5">5 minutes</option>
+                            <option value="10">10 minutes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Play notification sound</label>
+                        <select v-model="playNotificationSound">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </form>
             </div>
             <div class="tlight tsmall meta">Developed by <a href="https://github.com/neeilya/upwork-jobs-feed-tracker" target="_blank">@neeilya</a></div>
         </div>
