@@ -30,25 +30,17 @@ export default {
      * @return {Object}
      */
     fetch() {
-        return new Promise((resolve, reject) => {
-            this.checkAuthenticated()
-                .then(this.feedRequest)
-                .then(response => {
-                    if(response.status !== 200) {
-                        reject({ code: response.status });
-                    }
-                    resolve(response.data);
-                });
-        });
+        return this.checkAuthenticated().then(this.feedRequest);
     },
     /**
      * Fetch jobs and make notification if there are new
      * @return {undefined}
      */
     fetchAndNotify() {
-        this.fetch().then(({ results }) => {
-            let freshJobs = jobsStorage.push(results);
-            let unreadJobs = jobsStorage.getUnreadJobs();
+        this.fetch().then(response => {
+            const results = response.data.results;
+            const freshJobs = jobsStorage.push(results);
+            const unreadJobs = jobsStorage.getUnreadJobs();
 
             badge.setCounter(unreadJobs.length);
             storage.store('auth', true);
@@ -72,13 +64,12 @@ export default {
                 }
             }
         }).catch(err => {
-            if(err.code === 401) {
+            if (err.response && err.response.status === 401) {
                 storage.store('auth', false);
                 badge.refresh();
                 badge.setText('err');
-            }
 
-            console.log(err);
+            }
         });
     },
     /**
