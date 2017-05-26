@@ -90,10 +90,13 @@ new Vue({
         },
         'isFetchingEnabled': function(value) {
             config.setIsFetchingEnabled(value);
+            // console.log(JSON.parse(config.getIsFetchingEnabled()))
 
             if (! JSON.parse(config.getIsFetchingEnabled())) {
+              console.log("job stopped")
                 jobsAlarm.destroy();
             } else {
+              console.log("job started")
                 jobsAlarm.create(config.getInterval());
             }
         }
