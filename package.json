@@ -4,6 +4,7 @@
   "description": "Upwork jobs feed tracker",
   "main": "main.js",
   "scripts": {
+    "build": "rm -rf ./public; webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ilya Nee",
