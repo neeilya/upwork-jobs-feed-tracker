@@ -18,27 +18,27 @@ export default {
      * @returns {boolean}
      */
     getPlayNotificationSound() {
-        return localStorage.getItem('playNotificationSound');
+        return JSON.parse(localStorage.getItem('playNotificationSound'));
     },
     /**
      * Setter for playNotificationSound flag
      * @param value
      */
     setPlayNotificationSound(value) {
-        localStorage.setItem('playNotificationSound', +value);
+        localStorage.setItem('playNotificationSound', JSON.parse(+value));
     },
     /**
      * Getter for isFetchingEnabed param
      * @returns {boolean}
      */
     getIsFetchingEnabled() {
-        return localStorage.getItem('isFetchingEnabled');
+        return JSON.parse(localStorage.getItem('isFetchingEnabled'));
     },
     /**
      * Getter for isFetchingEnabed param
      * @returns {boolean}
      */
     setIsFetchingEnabled(value) {
-        return localStorage.setItem('isFetchingEnabled', value);
+        return localStorage.setItem('isFetchingEnabled', JSON.parse(value));
     }
 }

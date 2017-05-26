@@ -1,4 +1,5 @@
 @import './fonts'
+@import './checkbox'
 
 body
     font-family: 'Open Sans', sans-serif
@@ -117,6 +118,16 @@ a
 form#settings
     .form-group
         margin-bottom: 5px
+        padding: 4px 0
+        display: flex
+        justify-content: space-between
+        label
+          line-height: 24px
+          &:first-child
+            margin-right: 8px
+        select
+          height: 24px
+
     hr
         font-weight: 300
         border: none

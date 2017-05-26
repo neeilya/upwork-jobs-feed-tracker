@@ -12,11 +12,11 @@
                 <form id="settings">
                     <h3 class="heading">Settings</h3>
                     <div class="form-group">
-                        <label>Enable fetching</label>
-                        <select v-model="isFetchingEnabled">
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
+                      <label for="checkboxFetchingEnabled">Enable fetching</label>
+                      <label class="label-switch">
+                        <input type="checkbox" id="checkboxFetchingEnabled" v-model="isFetchingEnabled" />
+                        <div class="checkbox"></div>
+                      </label>
                     </div>
                     <hr/>
                     <div class="form-group">
@@ -28,11 +28,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Play notification sound</label>
-                        <select v-model="playNotificationSound">
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
+                        <label for="checkboxNotificationSound">Play notification sound</label>
+                        <label class="label-switch">
+                          <input type="checkbox" id="checkboxNotificationSound" v-model="playNotificationSound" />
+                          <div class="checkbox"></div>
+                        </label>
                     </div>
                 </form>
             </div>
