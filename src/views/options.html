@@ -21,7 +21,7 @@
                     <hr/>
                     <div class="form-group">
                         <label>Fetch interval</label>
-                        <select v-model="fetchInterval">
+                        <select v-model="fetchInterval" v-bind:disabled="!isFetchingEnabled">
                             <option value="1">1 minute</option>
                             <option value="5">5 minutes</option>
                             <option value="10">10 minutes</option>
