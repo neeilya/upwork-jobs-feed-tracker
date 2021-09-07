@@ -29,7 +29,7 @@ export default {
     },
     /**
      * Getter for isFetchingEnabed param
-     * @returns {boolean}
+     * @returns {boolean|null}
      */
     getIsFetchingEnabled() {
         return JSON.parse(localStorage.getItem('isFetchingEnabled'));

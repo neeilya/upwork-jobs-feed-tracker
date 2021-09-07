@@ -10,13 +10,17 @@ if(jobsStorage.getUnreadJobs().length > 0) {
     badge.setCounter(jobsStorage.getUnreadJobs().length);
 }
 
-// initialize config
-config.setIsFetchingEnabled(1);
-config.setPlayNotificationSound(1);
+// enable fetching on first install
+if (config.getIsFetchingEnabled() === null) {
+  config.setIsFetchingEnabled(true);
+  config.setPlayNotificationSound(true);
+}
 
 // initialize jobs fetching
-jobsAlarm.create(config.getInterval()); // in production minimum 1 minute
-jobsFetcher.fetchAndNotify();
+if (config.getIsFetchingEnabled()) {
+  jobsAlarm.create(config.getInterval()); // in production minimum 1 minute
+  jobsFetcher.fetchAndNotify();
+}
 
 chrome.alarms.onAlarm.addListener(({ name }) => {
     if(name !== 'jobsFetch') {
