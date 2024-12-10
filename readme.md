@@ -1,3 +1,5 @@
+## This is a legacy codebase. Current version has a new close-sourced code (React based).
+
 ![alt tag](https://raw.githubusercontent.com/neeilya/upwork-jobs-feed-tracker/master/promotional.png)
 
 The Upwork jobs feed tracker is a Chrome extension.  
